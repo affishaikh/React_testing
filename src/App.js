@@ -3,23 +3,27 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
+
+  onClick() {
+    this.setState(state => {
+      const newCount = state.count + 1;
+      return { count: newCount };
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div data-test="display-box" />
+        <div data-test="display-box" />
+        <div data-test="display-count">The count is {this.state.count}</div>
+        <button onClick={this.onClick.bind(this)} data-test="inc-button">
+          Increment
+        </button>
       </div>
     );
   }
